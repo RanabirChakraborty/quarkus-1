@@ -1,6 +1,8 @@
 ---
 - name: Validation
   hosts: all
+  vars_files:
+    - ../vars.yml
   tasks:
     - name: "Verify that Quarkus app is deployed properly."
       ansible.builtin.include_role:

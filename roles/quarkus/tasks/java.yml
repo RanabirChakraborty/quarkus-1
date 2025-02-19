@@ -3,7 +3,7 @@
   ansible.builtin.dnf:
     name: "{{ quarkus_java_package_version }}"
     state: present
-  become: true
+  become: "{{ quarkus_install_requires_become | default(true) }}"
   when:
     - quarkus_app_builder_skip_install_java_package is defined and not quarkus_app_builder_skip_install_java_package
     - quarkus_java_package_version is defined and quarkus_java_package_version | length > 0

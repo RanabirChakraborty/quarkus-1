@@ -1,0 +1,7 @@
+---
+quarkus_deploy_app_as_systemd_service_requires_privilege_escalation: "{{ quarkus_install_requires_become | default(true) }}"
+quarkus_path_to_folder_to_deploy_requires_become: "{{ quarkus_install_requires_become | default(true) }}"
+quarkus_maven_homedir_requires_privileges: "{{ quarkus_install_requires_become | default(true) }}"
+quarkus_app_dir_requires_become: "{{ quarkus_install_requires_become | default(true) }}"
+quarkus_app_builder_user_requires_become: "{{ quarkus_install_requires_become | default(true) }}"
+quarkus_deploy_systemd_daemon_reload_requires_become: "{{ quarkus_install_requires_become | default(true) }}"

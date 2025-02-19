@@ -4,7 +4,7 @@
     run_on_internal_ci: "{{ (lookup('ansible.builtin.env', 'JOB_NAME') != '') | ternary(True,False) }}"
 
 - name: "Ensure yumrepo and packages are installed"
-  become: yes
+  become: "{{ quarkus_install_requires_become | default(true) }}"
   become_user: root
   block:
     - name: "Ensure the Yum repo for Postgresql are available ({{ ansible_distribution }})"
@@ -47,7 +47,7 @@
       ansible.builtin.command: psql -c 'grant all privileges on database "{{ pgsql_app_dbname }}" to {{ pgsql_app_user }}'
 
 - name: "Ensure Postrgesql DB allows password connection from local"
-  become: yes
+  become: "{{ quarkus_install_requires_become | default(true) }}"
   become_user: postgres
   ansible.builtin.template:
     src: pgsql/pg_hba.conf.j2
@@ -56,7 +56,7 @@
     ident_method: md5
 
 - name: "Ensure Posgresql DB has been restarted"
-  become: yes
+  become: "{{ quarkus_install_requires_become | default(true) }}"
   become_user: root
   ansible.builtin.service:
     name: "{{ pgsql_service_name }}"

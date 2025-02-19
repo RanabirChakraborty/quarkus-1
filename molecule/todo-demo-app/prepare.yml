@@ -3,6 +3,7 @@
   hosts: all
   vars_files:
     - pgsql/vars.yml
+    - ../vars.yml
   tasks:
     - name: "Ensure common prepare steps are executed."
       ansible.builtin.include_tasks: ../common.yml

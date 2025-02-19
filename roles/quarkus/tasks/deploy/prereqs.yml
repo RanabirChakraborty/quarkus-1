@@ -1,6 +1,6 @@
 ---
 - name: "Ensure requirements are fullfilled."
-  become: True
+  become: "{{ quarkus_install_requires_become | default(true) }}"
   block:
     - name: "Determine OpenJDK java name (if not provided) using provided {{ quarkus_java_version }}."
       ansible.builtin.set_fact:

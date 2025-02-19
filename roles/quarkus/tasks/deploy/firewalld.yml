@@ -1,6 +1,6 @@
 ---
 - name: "Enable firewalld config for Quarkus app"
-  become: true
+  become: "{{ quarkus_install_requires_become | default(true) }}"
   block:
     - name: "Ensure firewalld is available."
       ansible.builtin.package:

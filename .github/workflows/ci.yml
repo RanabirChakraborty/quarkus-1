@@ -3,16 +3,17 @@ name: CI
 on:
   push:
     branches:
-      - main
+      - AMW-368
   pull_request:
   schedule:
     - cron: '0 6 * * *'
 
 jobs:
   ci:
-    uses: ansible-middleware/github-actions/.github/workflows/ci.yml@main
+    uses: ansible-middleware/github-actions/.github/workflows/ci.yml@rootperm
     secrets: inherit
     with:
       fqcn: 'middleware_automation/quarkus'
+      root_permission_varname: 'quarkus_install_requires_become'
       molecule_tests: >-
         [ "default", "getting-started-reactive", "todo-demo-app" ] 
